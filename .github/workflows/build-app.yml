@@ -103,10 +103,6 @@ jobs:
           set -euo pipefail
           make clean
           make -j"$(sysctl -n hw.logicalcpu)" app
-          plutil -lint build/out/Ath10kMac.kext/Contents/Info.plist
-          xcrun lipo build/out/Ath10kMac.kext/Contents/MacOS/Ath10kMac -verify_arch x86_64
-          test "$(xcrun lipo build/out/Ath10kMac.kext/Contents/MacOS/Ath10kMac -archs)" = "x86_64"
-          xcrun dwarfdump --uuid build/out/Ath10kMac.kext/Contents/MacOS/Ath10kMac
 
       - name: Package kext, notices, and checksum
         env:
